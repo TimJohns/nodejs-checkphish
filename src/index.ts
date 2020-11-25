@@ -1,7 +1,7 @@
 import defaultAxios, { AxiosInstance } from "axios";
 
 export const DEFAULT_API_URL = "https://developers.checkphish.ai/api";
-export const DEFAULT_USER_AGENT = "CheckPhishNodeLib/1.0.1";
+export const DEFAULT_USER_AGENT = "CheckPhishNodeLib/1.0.2";
 
 
 // TODO(tjohns): Fill in additional CheckPhishStatus fields
