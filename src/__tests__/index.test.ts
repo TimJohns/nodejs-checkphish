@@ -59,7 +59,7 @@ describe('with defaults', () => {
 
       const axiosArgs = mockAxios.mock.calls[0][0];
 
-      expect(axiosArgs.url).toEqual('https://developers.checkphish.ai/api/neo/status');
+      expect(axiosArgs.url).toEqual('https://developers.checkphish.ai/api/neo/scan/status');
 
     });
   });
@@ -130,14 +130,12 @@ describe('with options', () => {
 
       const axiosArgs = mockAxios.mock.calls[0][0];
 
-      expect(axiosArgs.url).toEqual('https://tenant.bolster.ai/neo/status');
+      expect(axiosArgs.url).toEqual('https://tenant.bolster.ai/neo/scan/status');
 
     });
   });
 
 });
-
-// TODO(tjohns): Test that the version number in the UA string matches package.json
 
 // TODO(tjohns): Test scan with axios throw
 // TODO(tjohns): Test scan with error response

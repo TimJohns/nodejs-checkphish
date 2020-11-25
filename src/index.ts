@@ -82,7 +82,7 @@ export class CheckPhish {
     const { data: statusResponse }: { data: CheckPhishStatusResponse}  = await axios(
       {
         method: 'post',
-        url: `${apiURL}/neo/status`,
+        url: `${apiURL}/neo/scan/status`,
         headers: {
           'Content-Type': 'application/json',
           'User-Agent': userAgent
