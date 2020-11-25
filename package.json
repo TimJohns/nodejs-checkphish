@@ -1,0 +1,33 @@
+{
+  "name": "@timjohns/checkphish",
+  "version": "1.0.0",
+  "description": "Node client for the CheckPhish API from Bolster",
+  "main": "./build/src/index.js",
+  "types": "./build/src/index.d.ts",
+  "files": [
+    "build/src"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimJohns/nodejs-checkphish.git"
+  },
+  "keywords": [
+    "Phish",
+    "Phishing",
+    "CheckPhish",
+    "Bolster"
+  ],
+  "author": "Tim Johns",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TimJohns/nodejs-checkphish/issues"
+  },
+  "homepage": "https://github.com/TimJohns/nodejs-checkphish#readme",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}
