@@ -1,6 +1,6 @@
 {
   "name": "@timjohns/checkphish",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node client for the CheckPhish API from Bolster",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
