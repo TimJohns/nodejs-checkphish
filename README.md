@@ -27,7 +27,7 @@ const scan = async () => {
   console.log(JSON.stringify({scanResponse}, null, 2));
 }
 
-// This will almost always how PENDING - see the checkphish-cli for a more functional example
+// This will almost always show PENDING - see the checkphish-cli for a more functional example
 scan();
 ```
 
