@@ -1,4 +1,7 @@
 # CheckPhish Node.js Library
+
+![Node.js CI](https://github.com/actions/hello-world/workflows/Node.js%20CI/badge.svg)
+
 The CheckPhish Node.js Library provides convenient access to the CheckPhish API from Bolster, for applications running in Node.js environments (written in either JavaScript or TypeScript).
 
 For more information on CheckPhish, and how to use the API (and this library) to automate your phishing detection & response with real-time detection, see the [CheckPhish API](https://checkphish.ai/checkphish-api/).
