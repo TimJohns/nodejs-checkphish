@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc -p .",
     "test": "jest",
-    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
