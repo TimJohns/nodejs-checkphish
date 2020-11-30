@@ -3,8 +3,8 @@ import { AxiosInstance } from "axios";
 
 const fakeAPIKey = "Not really an API key";
 
-describe('with defaults', () => {
-  describe('scan', () => {
+describe('scan', () => {
+  describe('with defaults', () => {
     test('uses the full default URL', async () => {
       const mockAxios = jest.fn();
       const axios = mockAxios as unknown as AxiosInstance;
@@ -43,30 +43,7 @@ describe('with defaults', () => {
 
     });
   });
-  describe('status', () => {
-    test('uses the full default URL', async () => {
-      const mockAxios = jest.fn();
-      const axios = mockAxios as unknown as AxiosInstance;
-      const defaultOptions = { axios };
-      const checkphish = new CheckPhish(fakeAPIKey, defaultOptions);
-      const statusResponse = {
-        data: {}
-      };
-
-      mockAxios.mockResolvedValue(statusResponse);
-
-      await checkphish.status('jobID');
-
-      const axiosArgs = mockAxios.mock.calls[0][0];
-
-      expect(axiosArgs.url).toEqual('https://developers.checkphish.ai/api/neo/scan/status');
-
-    });
-  });
-});
-
-describe('with options', () => {
-  describe('scan', () => {
+  describe('with options', () => {
     test('uses the specified root URL', async () => {
       const mockAxios = jest.fn();
       const axios = mockAxios as unknown as AxiosInstance;
@@ -111,7 +88,63 @@ describe('with options', () => {
     });
 
   });
-  describe('status', () => {
+  describe('with a network error', () => {
+    test('passes through the network exception', async () => {
+      const mockAxios = jest.fn();
+      const axios = mockAxios as unknown as AxiosInstance;
+      const defaultOptions = { axios };
+      const checkphish = new CheckPhish(fakeAPIKey, defaultOptions);
+
+      const error = new Error('boom')
+      mockAxios.mockImplementation(() => {
+        throw error;
+      });
+
+      await expect(checkphish.scan('https://example.com')).rejects.toThrowError(error);
+    });
+  });
+  describe('with an application error response', () => {
+    test('throws an appropriate exception', async () => {
+      const mockAxios = jest.fn();
+      const axios = mockAxios as unknown as AxiosInstance;
+      const defaultOptions = { axios };
+      const checkphish = new CheckPhish(fakeAPIKey, defaultOptions);
+
+      const scanResponse = {
+        data: {
+          errorMessage: 'boom'
+        }
+      };
+
+      mockAxios.mockResolvedValue(scanResponse);
+
+      await expect(checkphish.scan('https://example.com')).rejects.toThrowError('boom');
+
+    });
+  });
+});
+describe('status', () => {
+  describe('with defaults', () => {
+    test('uses the full default URL', async () => {
+      const mockAxios = jest.fn();
+      const axios = mockAxios as unknown as AxiosInstance;
+      const defaultOptions = { axios };
+      const checkphish = new CheckPhish(fakeAPIKey, defaultOptions);
+      const statusResponse = {
+        data: {}
+      };
+
+      mockAxios.mockResolvedValue(statusResponse);
+
+      await checkphish.status('jobID');
+
+      const axiosArgs = mockAxios.mock.calls[0][0];
+
+      expect(axiosArgs.url).toEqual('https://developers.checkphish.ai/api/neo/scan/status');
+
+    });
+  });
+  describe('with options', () => {
     test('uses the specified root URL', async () => {
       const mockAxios = jest.fn();
       const axios = mockAxios as unknown as AxiosInstance;
@@ -134,11 +167,39 @@ describe('with options', () => {
 
     });
   });
+  describe('with a network error', () => {
+    test('passes through the network exception', async () => {
+      const mockAxios = jest.fn();
+      const axios = mockAxios as unknown as AxiosInstance;
+      const defaultOptions = { axios };
+      const checkphish = new CheckPhish(fakeAPIKey, defaultOptions);
+
+      const error = new Error('boom')
+      mockAxios.mockImplementation(() => {
+        throw error;
+      });
+
+      await expect(checkphish.status('jobID')).rejects.toThrowError(error);
+    });
+  });
+  describe('with an application error response', () => {
+    test('throws an appropriate exception', async () => {
+      const mockAxios = jest.fn();
+      const axios = mockAxios as unknown as AxiosInstance;
+      const defaultOptions = { axios };
+      const checkphish = new CheckPhish(fakeAPIKey, defaultOptions);
+
+      const scanResponse = {
+        data: {
+          errorMessage: 'boom'
+        }
+      };
+
+      mockAxios.mockResolvedValue(scanResponse);
+
+      await expect(checkphish.status('jobID')).rejects.toThrowError('boom');
+
+    });
+  });
 
 });
-
-// TODO(tjohns): Test scan with axios throw
-// TODO(tjohns): Test scan with error response
-// TODO(tjohns): Test status with axios throw
-// TODO(tjohns): Test status with error response
-
